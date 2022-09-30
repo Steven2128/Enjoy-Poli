@@ -1,5 +1,7 @@
 # Django
 from django.db import models
+from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Faculty(models.Model):
@@ -46,13 +48,21 @@ class Program(models.Model):
     image = models.URLField(default='sample.jpg', verbose_name='Ruta de la imagen del programa')
     activity = models.CharField(max_length=3, choices=ACTIVITY_IN_PROGRAM_CHOICES, blank=False, null=False, verbose_name='Actividad del programa')
     students = models.ManyToManyField("users.Student", blank=True, verbose_name='Estudiantes relacionado al programa')
+    slug = models.SlugField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return "{} - Duración: {} hasta {} - Cupo actual: {} - Estudiantes: {}".format(self.name, self.start_date, self.final_data, self.current_capacity_available, self.students.count())
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Program, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'Programa'
         verbose_name_plural = 'Programas'
+
+    def get_absolute_url(self):
+        return reverse("program_detail", kwargs={"slug": self.slug})
 
 
 class Assistance(models.Model):
