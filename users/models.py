@@ -21,7 +21,7 @@ class Teacher(models.Model):
 class Student(models.Model):
     """Model Student"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    career = models.ForeignKey(Career, on_delete=models.CASCADE)
+    career = models.ForeignKey(Career, on_delete=models.CASCADE, verbose_name='Carrera del estudiante')
 
     def __str__(self):
         return self.user.get_full_name()
