@@ -12,5 +12,5 @@ urlpatterns = [
     # Home
     path('', TemplateView.as_view(template_name='home/index.html'), name='index'),
     # Programs
-    path('programs/', include('wellness.urls'))
+    path('bienestar/', include('wellness.urls'))
 ]
