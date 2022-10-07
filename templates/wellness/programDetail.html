@@ -1,21 +1,26 @@
 {% extends "layouts/base.html" %}
-
+{% load static %}
 {% block title %} {{ program.name }} {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+    <link href={% static 'assets/lib/main.css' %} rel='stylesheet' />
+
+{% endblock stylesheets %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
+        {{ related }}
             <div class="card card-profile">
                 <div class="card-body">
-                    <h6 class="card-category text-gray">{{ program.get_activity_display }}</h6>
+                    <h6 class="card-category text-gray">{{ program.get_activity_display }} <a href="#" class="btn btn-primary btn-round float-right">Confirmar Inscripción</a></h6>
                     <h4 class="card-title text-info">{{ program.name }}</h4>
                     <p class="card-text">{{ program.description }}</p>
 
                     <h4 class="card-title text-info">Fecha Inicio - Fecha Fin</h4>
-                    <p class="card-text">{% if program.start_date is not None %}{{ program.start_date }}{% else %}No disponible{% endif %} hasta {% if program.final_data is not None %}{{ program.final_data }}{% else %}No disponible{% endif %}</p>
+                    <p class="card-text">{% if program.start_date is not None %}{{ program.start_date }}{% else %}No disponible{% endif %}
+                        <strong>hasta</strong> {% if program.final_data is not None %}{{ program.final_data }}{% else %}No disponible{% endif %}</p>
                     <h4 class="card-title text-info">Instructor</h4>
                     <p class="card-title">{{ program.teacher.user.get_full_name }}</p>
                     <h4 class="card-title text-info">Email</h4>
@@ -23,8 +28,7 @@
                     <h4 class="card-title text-info">Cupo Actual</h4>
                     <p class="card-text">{{ program.current_capacity_available }}/{{ program.capacity }}</p>
                     <h4 class="card-title text-info">Horario</h4>
-
-                    <a href="/" class="btn btn-primary btn-round">Confirmar Inscripción</a>
+                    <div id='calendar'></div>
                 </div>
             </div>
         </div>
@@ -33,4 +37,25 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+    <script src={% static 'assets/lib/main.js' %}></script>
+    <script src={% static 'assets/lib/locales/es.js' %}></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            defaultView: 'month',
+            events: [{
+                title:"{{ program.name }}",
+                startRecur: '{{ program.start_date|date:"Y-m-d" }}',
+                endRecur: '{{ program.final_data|date:"Y-m-d" }}',
+                startTime: '{{ schedule.start_time }}',
+                endTime: '{{ schedule.final_time }}',
+                daysOfWeek: ['{{ schedule.day }}']
+            }],
+        });
+        calendar.render();
+      });
+
+    </script>
+{% endblock javascripts %}

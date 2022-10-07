@@ -45,5 +45,11 @@ class ProgramDetailView(DetailView):
     slug_url_kwarg = 'slug'
     query_pk_and_slug = True
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(ProgramDetailView, self).get_context_data(*args, **kwargs)
+        instance = self.get_object()
+        context['program'] = instance
+        context['schedule'] = Schedule.objects.filter(program=instance).first()
+        return context
     def get_object(self, **kwargs):
         return Program.objects.get(slug=self.kwargs['slug'])
