@@ -1,70 +1,69 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Login {% endblock %} 
+{% block title %} Login {% endblock %}
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 
-{% block content %}
+{% block login %}
+    <div class="container">
+        <div class="row pt-5">
+            <div class="col-md-6 mt-5 offset-md-3 pt-5 mt-5">
+                <div class="card">
 
-        <div class="row">
-          <div class="col-md-8">
-            <div class="card">
-
-              <form role="form" method="post" action="">
-              
-                {% csrf_token %} 
-
-                <div class="card-header">
-                  <h5 class="title">Login</h5>
-
-                  <h6 class="card-category">
-                      {% if msg %}
-                        <span class="text-danger">{{ msg }}</span>
-                      {% else %}
-                        Add your credentials
-                      {% endif %}  
-                  </h6>
-                </div>
-
-                <div class="card-body">
-
-                    <div class="row">
-
-                      <div class="col-md-3 px-md-1">
-                        <div class="form-group">
-                          <label>Username</label>
-                          {{ form.username }}
-                        </div>
-                      </div>
-
+                    <div class="card-header text-center py-4">
+                        <h4 class="title">
+                            Inicia Sesión
+                        </h4>
+                        <h6 class="card-category">
+                            {% if form.errors %}
+                            <span class="text-danger">Credenciales incorrectas</span>
+                            {% endif %}
+                        </h6>
                     </div>
-                    <div class="row">
 
-                      <div class="col-md-3 px-md-1">
-                        <div class="form-group">
-                          <label>Password</label>
-                          {{ form.password }}
+                    <form role="form" method="post">
+                        {% csrf_token %}
+                        <div class="card-body px-5 py-3">
+                            <div class="row">
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Usuario</label>
+                                        <input type="text" name="username" placeholder="Usuario" class="form-control" required id="id_username">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" name="password" placeholder="Contraseña" class="form-control" required id="id_password">
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
-                      </div>
 
-                    </div>
-                    
+                        <div class="card-footer text-center">
+                            <button type="submit" name="login" class="btn btn-fill btn-primary">Login</button>
+
+                            <br><br>
+
+                            <p>
+                                Don't have an account? <a href="/register/" class="text-primary">Register</a>
+                            </p>
+                        </div>
+
+                    </form>
+
                 </div>
-                <div class="card-footer">
-                  <button type="submit" name="login" class="btn btn-fill btn-primary">Login</button>
-                  &nbsp; &nbsp;
-                  Don't have an account? <a href="{% url 'register' %}" class="text-primary">Create</a>
-                </div>
-
-              </form>
-
             </div>
-          </div>
-      </div>
+        </div>
+    </div>
 
 
-{% endblock content %}
+
+{% endblock login %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}{% endblock javascripts %}
