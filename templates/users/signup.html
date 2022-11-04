@@ -1,0 +1,77 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Signup {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block login %}
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-6 mt-5 offset-md-3 pt-5 mt-5">
+                <div class="card">
+
+                    <div class="card-header text-center py-4">
+                        <h4 class="title">Crear cuenta</h4>
+                        <h6 class="card-category">
+                            {% if form.errors %}
+                            <span class="text-danger">{{ form.errors }}</span>
+                            {% endif %}
+                        </h6>
+                    </div>
+
+                    <form role="form" method="post">
+                        {% csrf_token %}
+                        <div class="card-body px-5 py-3">
+                            <div class="row">
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Nombres</label>
+                                        <input type="text" name="first_name" placeholder="Nombres" class="form-control" required id="id_first_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Apellidos</label>
+                                        <input type="text" name="last_name" placeholder="Apellidos" class="form-control" required id="id_last_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Correo Electrónico</label>
+                                        <input type="email" name="email" placeholder="Correo Electrónico" class="form-control" required id="id_email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Carrera</label>
+                                        {{ form.career }}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 px-md-1">
+                                    <div class="form-group">
+                                        <label>Contraseña</label>
+                                        <input type="password" name="password" placeholder="Contraseña" class="form-control" required id="id_password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="submit" name="login" class="btn btn-fill btn-primary">Registrarme</button>
+                            <br><br>
+                            <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-primary">Ingresa</a></p>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock login %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

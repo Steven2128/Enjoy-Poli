@@ -1,180 +1,3 @@
---
--- PostgreSQL database cluster dump
---
-
-SET default_transaction_read_only = off;
-
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-
---
--- Drop databases (except postgres and template1)
---
-
-DROP DATABASE enjoy_poli;
-
-
-
-
---
--- Drop roles
---
-
-DROP ROLE postgres;
-
-
---
--- Roles
---
-
-CREATE ROLE postgres;
-ALTER ROLE postgres WITH SUPERUSER INHERIT CREATEROLE CREATEDB LOGIN REPLICATION BYPASSRLS PASSWORD 'SCRAM-SHA-256$4096:nqir+kiRPW1jJ2OJOfEq1g==$l3QDdnPe9YzOAq/66Q6vYaNSKgsw9NYtzFtV/klTEew=:Ki8cItCrXOszje1SQR1BlYHkKtYpyX5p1wU3UOgVsac=';
-
-
-
-
-
-
---
--- Databases
---
-
---
--- Database "template1" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 14.5 (Debian 14.5-1.pgdg110+1)
--- Dumped by pg_dump version 14.5 (Debian 14.5-1.pgdg110+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-UPDATE pg_catalog.pg_database SET datistemplate = false WHERE datname = 'template1';
-DROP DATABASE template1;
---
--- Name: template1; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE template1 OWNER TO postgres;
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE template1 IS 'default template for new databases';
-
-
---
--- Name: template1; Type: DATABASE PROPERTIES; Schema: -; Owner: postgres
---
-
-ALTER DATABASE template1 IS_TEMPLATE = true;
-
-
-\connect template1
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE template1; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE CONNECT,TEMPORARY ON DATABASE template1 FROM PUBLIC;
-GRANT CONNECT ON DATABASE template1 TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
-
---
--- Database "enjoy_poli" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 14.5 (Debian 14.5-1.pgdg110+1)
--- Dumped by pg_dump version 14.5 (Debian 14.5-1.pgdg110+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: enjoy_poli; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE enjoy_poli WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE enjoy_poli OWNER TO postgres;
-
-\connect enjoy_poli
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-SET default_tablespace = '';
-
-SET default_table_access_method = heap;
-
---
--- Name: auth_group; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE public.auth_group (
     id integer NOT NULL,
@@ -763,7 +586,7 @@ COPY public.auth_user (id, password, last_login, is_superuser, username, first_n
 9	pbkdf2_sha256$390000$wdixV3RMXgGApABDDK5XgA$70rI7LZXnCj/O4SCwFyPqRom86XoQn/qBJAMnQX/6lA=	\N	f	voleibol	Rogers Alberto	Cueto	voleibol@poligran.edu.co	f	t	2022-09-30 03:30:46+00
 10	pbkdf2_sha256$390000$kCby1jDe8gGJnhhtmLEucA$2NC3ieJEqMedtUwmadUkg4/6wT8CF05ctKR8NiOaxjk=	\N	f	gimnasio	Daniel	Medina	gimnasio@poli.edu.co	f	t	2022-09-30 03:31:21+00
 11	pbkdf2_sha256$390000$jcnAPuldAuu5H8wKnuPcOs$MMI9Ad1MRurly84X+wEoGPjBckKFXMiJDPbmzgcsPTQ=	\N	f	tenismesa	Fernando	Suarez	tenismesa@poligran.edu.co	f	t	2022-09-30 03:33:37+00
-1	pbkdf2_sha256$390000$m5PHIrhSgmhFaxzGm6Gq4j$qcT2y+LW6YNmp/uxj5rK4L3AFjuVFlFHvu5NnWJzK8E=	2022-09-27 18:20:41+00	t	admin	Stephen	Alarcón	admin@admin.com	t	t	2022-09-27 18:20:30+00
+1	pbkdf2_sha256$390000$m5PHIrhSgmhFaxzGm6Gq4j$qcT2y+LW6YNmp/uxj5rK4L3AFjuVFlFHvu5NnWJzK8E=	2022-10-07 03:53:58.418995+00	t	admin	Stephen	Alarcón	admin@admin.com	t	t	2022-09-27 18:20:30+00
 \.
 
 
@@ -848,6 +671,20 @@ COPY public.django_admin_log (id, action_time, object_id, object_repr, action_fl
 58	2022-09-30 15:18:09.223465+00	4	TENIS - Duración: None hasta None - Cupo actual: 0 - Estudiantes: 0	2	[]	10	1
 59	2022-09-30 15:18:12.296248+00	3	YOGA Y PILATES - Duración: None hasta None - Cupo actual: 0 - Estudiantes: 0	2	[]	10	1
 60	2022-09-30 15:18:14.951222+00	2	RUMBA AERÓBICA - Duración: None hasta None - Cupo actual: 0 - Estudiantes: 0	2	[]	10	1
+61	2022-09-30 16:11:59.10959+00	1	FÚTBOL CAMPO - Duración: None hasta None - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Cupo actual disponible del programa"]}}]	10	1
+62	2022-09-30 16:21:02.205768+00	1	FÚTBOL CAMPO - Duración: 2022-09-01 hasta 2022-09-30 - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Fecha inicio del programa", "Fecha inicio del programa", "Estado del programa"]}}]	10	1
+63	2022-10-07 03:36:42.058908+00	1	Programa: FÚTBOL CAMPO - Día: Mon 06:00:00/07:00:00 - 	1	[{"added": {}}]	11	1
+64	2022-10-07 04:18:43.22414+00	1	FÚTBOL CAMPO - Duración: 2022-10-01 hasta 2022-10-31 - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Fecha inicio del programa", "Fecha inicio del programa", "Estado del programa"]}}]	10	1
+65	2022-10-07 04:20:33.553983+00	1	Programa: FÚTBOL CAMPO - Día: 1 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase"]}}]	11	1
+66	2022-10-07 04:28:25.618743+00	1	Programa: FÚTBOL CAMPO - Día: 2 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase"]}}]	11	1
+67	2022-10-07 04:28:43.373121+00	1	Programa: FÚTBOL CAMPO - Día: 2 08:00:00/09:00:00 - 	2	[{"changed": {"fields": ["Hora inicio clase", "Hora final clase"]}}]	11	1
+68	2022-10-07 04:38:35.402887+00	1	Programa: FÚTBOL CAMPO - Día: Mon 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase", "Hora inicio clase", "Hora final clase"]}}]	11	1
+69	2022-10-07 04:40:31.619331+00	1	Programa: FÚTBOL CAMPO - Día: 1 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase"]}}]	11	1
+70	2022-10-07 04:47:24.803083+00	1	FÚTBOL CAMPO - Duración: 2022-10-01 hasta 2022-10-30 - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Fecha inicio del programa"]}}]	10	1
+71	2022-10-07 04:47:38.171596+00	1	Programa: FÚTBOL CAMPO - Día: 0 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase"]}}]	11	1
+72	2022-10-07 04:48:17.907708+00	1	FÚTBOL CAMPO - Duración: 2022-10-01 hasta 2022-11-30 - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Fecha inicio del programa"]}}]	10	1
+73	2022-10-07 04:48:41.700658+00	1	Programa: FÚTBOL CAMPO - Día: 3 06:00:00/07:00:00 - 	2	[{"changed": {"fields": ["D\\u00eda de la clase"]}}]	11	1
+74	2022-10-07 04:49:05.357054+00	1	FÚTBOL CAMPO - Duración: 2022-10-01 hasta 2022-12-01 - Cupo actual: 100 - Estudiantes: 0	2	[{"changed": {"fields": ["Fecha inicio del programa"]}}]	10	1
 \.
 
 
@@ -900,6 +737,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 21	users	0002_initial	2022-09-27 18:20:17.487283+00
 22	wellness	0002_program_slug	2022-09-30 14:51:45.050306+00
 23	users	0003_alter_student_career	2022-09-30 14:51:45.073964+00
+24	wellness	0003_alter_schedule_day	2022-10-07 04:30:17.612121+00
 \.
 
 
@@ -909,6 +747,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 fdxi001gurpjdw5zkvru3cwb17l4q86e	.eJxVjDsOwjAQBe_iGlnZdewAJT1niPbjxQEUS_lUiLtDpBTQvpl5L9fTupR-nfPUD-rODtzhd2OSRx43oHcab9VLHZdpYL8pfqezv1bNz8vu_h0Umsu3FmytFUzBgkE4oqpY7NAUOk5oIBIzSSTE0MQmnkTBLAETM7Scsnt_APWyOKU:1odFCD:0-Gzwg13hEEHjY9UwrkuQ0lhOTvpRT5jSrBPXEiSuqc	2022-10-11 18:20:41.638634+00
+ikvyritutf28qw4qir9yvugwj7k575rf	.eJxVjDsOwjAQBe_iGlnZdewAJT1niPbjxQEUS_lUiLtDpBTQvpl5L9fTupR-nfPUD-rODtzhd2OSRx43oHcab9VLHZdpYL8pfqezv1bNz8vu_h0Umsu3FmytFUzBgkE4oqpY7NAUOk5oIBIzSSTE0MQmnkTBLAETM7Scsnt_APWyOKU:1ogdqK:B6Fiq8q2TBg5XAGZnHoqsBVAEfF4R56a7EGVmOTfBPk	2022-10-21 03:16:08.058645+00
+gqyk4kfq28cxij2ro4q7kxjk2y6g0347	.eJxVjDsOwjAQBe_iGlnZdewAJT1niPbjxQEUS_lUiLtDpBTQvpl5L9fTupR-nfPUD-rODtzhd2OSRx43oHcab9VLHZdpYL8pfqezv1bNz8vu_h0Umsu3FmytFUzBgkE4oqpY7NAUOk5oIBIzSSTE0MQmnkTBLAETM7Scsnt_APWyOKU:1ogeQw:POIi6rNnWOriG9f6TlA5HYuZpGkcUDsEVv3BaV3Ixd4	2022-10-21 03:53:58.422806+00
 \.
 
 
@@ -972,7 +812,6 @@ COPY public.wellness_faculty (id, name) FROM stdin;
 --
 
 COPY public.wellness_program (id, name, description, capacity, current_capacity_available, start_date, final_data, status, image, activity, teacher_id, slug) FROM stdin;
-1	FÚTBOL CAMPO	Es una de las disciplinas deportivas que contribuye a la formación integral de los futuros profesionales. Fomenta en nuestros estudiantes la concentración y el trabajo en equipo.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_futbol_campo.jpg	AD	3	futbol-campo
 11	TENIS DE MESA	El tenis de mesa es un deporte  que desarrolla la agilidad física y mental, que es fundamental en la formación integral de todo futuro profesional.	100	0	\N	\N	t	https://hotmart.s3.amazonaws.com/product_contents/0364bd58-10a4-4748-a469-5118f5727d75/ping.jpg	AD	8	tenis-de-mesa
 10	GIMNASIO	Ofrece los servicios de salud preventiva para mejorar la calidad de vida. Contamos con instructores que brindan atención semi personalizada, dirigida e integral.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_gimnasio.jpg	AD	5	gimnasio
 9	VOLEIBOL	El Poli busca a través del voleibol aportar en la formación integral del estudiante, partiendo de un nivel básico para finalmente llegar a un buen nivel competitivo y resaltar entre equipos.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_voleibol.jpg	AD	9	voleibol
@@ -982,6 +821,7 @@ COPY public.wellness_program (id, name, description, capacity, current_capacity_
 4	TENIS	El tenis es un deporte, en el cual se desarrollan una gran autoestima y confianza en sí mismo además de una actitud positiva hacia la actividad física y la salud.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_tenis.jpg	AD	7	tenis
 3	YOGA Y PILATES	Dirigido a estudiantes en busca de mejorar su condición psicofísica, unificando cuerpo, mente y espíritu con el propósito de expandir su estado de conciencia favoreciendo su rendimiento académico, concentración, liberación de tensiones físicas y emocionales.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_yoga.jpg	AD	10	yoga-y-pilates
 2	RUMBA AERÓBICA	Brindamos a los alumnos una clase amena y divertida, realizando movimientos aeróbicos de cadera, cintura y hombros donde se combinan diferentes ritmos musicales.	100	0	\N	\N	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/rumba.png	AD	6	rumba-aerobica
+1	FÚTBOL CAMPO	Es una de las disciplinas deportivas que contribuye a la formación integral de los futuros profesionales. Fomenta en nuestros estudiantes la concentración y el trabajo en equipo.	100	100	2022-10-01	2022-12-01	t	https://www.poli.edu.co/sites/default/files/styles/widget_image/public/1_futbol_campo.jpg	AD	3	futbol-campo
 \.
 
 
@@ -998,6 +838,7 @@ COPY public.wellness_program_students (id, program_id, student_id) FROM stdin;
 --
 
 COPY public.wellness_schedule (id, day, start_time, final_time, program_id) FROM stdin;
+1	3	06:00:00	07:00:00	1
 \.
 
 
@@ -1047,7 +888,7 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 60, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 74, true);
 
 
 --
@@ -1061,7 +902,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 13, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 23, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 24, true);
 
 
 --
@@ -1117,7 +958,7 @@ SELECT pg_catalog.setval('public.wellness_program_students_id_seq', 1, false);
 -- Name: wellness_schedule_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.wellness_schedule_id_seq', 1, false);
+SELECT pg_catalog.setval('public.wellness_schedule_id_seq', 1, true);
 
 
 --
@@ -1656,68 +1497,4 @@ ALTER TABLE ONLY public.wellness_program
 ALTER TABLE ONLY public.wellness_schedule
     ADD CONSTRAINT wellness_schedule_program_id_88d8d342_fk_wellness_program_id FOREIGN KEY (program_id) REFERENCES public.wellness_program(id) DEFERRABLE INITIALLY DEFERRED;
 
-
---
--- PostgreSQL database dump complete
---
-
---
--- Database "postgres" dump
---
-
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 14.5 (Debian 14.5-1.pgdg110+1)
--- Dumped by pg_dump version 14.5 (Debian 14.5-1.pgdg110+1)
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
-DROP DATABASE postgres;
---
--- Name: postgres; Type: DATABASE; Schema: -; Owner: postgres
---
-
-CREATE DATABASE postgres WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.utf8';
-
-
-ALTER DATABASE postgres OWNER TO postgres;
-
-\connect postgres
-
-SET statement_timeout = 0;
-SET lock_timeout = 0;
-SET idle_in_transaction_session_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SELECT pg_catalog.set_config('search_path', '', false);
-SET check_function_bodies = false;
-SET xmloption = content;
-SET client_min_messages = warning;
-SET row_security = off;
-
---
--- Name: DATABASE postgres; Type: COMMENT; Schema: -; Owner: postgres
---
-
-COMMENT ON DATABASE postgres IS 'default administrative connection database';
-
-
---
--- PostgreSQL database dump complete
---
-
---
--- PostgreSQL database cluster dump complete
---
 

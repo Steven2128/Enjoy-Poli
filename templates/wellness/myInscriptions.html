@@ -1,28 +1,26 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Bienestar Universitario  {% endblock %}
+{% block title %} Mis Inscripciones  {% endblock %}
 
 {% block content %}
-    {% if not programs %}
-        <div class="alert alert-light" role="alert">
-            Proximamente más programas...
-        </div>
-        <div></div>
-    {% else %}
-        <div class="row">
-            {% for program in programs %}
+    {% if programs %}
+        {% for program in programs %}
+            <div class="row">
                 <div class="col-4">
                     <div class="card">
                         <img class="card-img-top img-fluid" src="{{ program.image }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-category">{{ program.get_activity_display }}</h5>
                             <h3 class="card-title">{{ program.name }}</h3>
-                            <a href="{% if request.user.student not in program.students.all %}{% url 'program-sport-detail' program.slug %}"{% else %}#" disabled{% endif %}
-                               class="btn btn-primary float-right">¡Inscribirme!</a>
+                            <a href="{% url 'program-detail' program.slug %}" class="btn btn-primary float-right">¡Ver Detalle!</a>
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-light" role="alert">
+            Aún no te has inscrito a ningun programa...
         </div>
     {% endif %}
 {% endblock content %}

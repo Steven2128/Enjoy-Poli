@@ -14,7 +14,7 @@
         {{ related }}
             <div class="card card-profile">
                 <div class="card-body">
-                    <h6 class="card-category text-gray">{{ program.get_activity_display }} <a href="#" class="btn btn-primary btn-round float-right">Confirmar Inscripción</a></h6>
+                    <h6 class="card-category text-gray">{{ program.get_activity_display }} {% if is_enroll is False %}<a href="{% url 'enroll-user' program.slug %}" class="btn btn-primary btn-round float-right">Confirmar Inscripción</a>{% endif %}</h6>
                     <h4 class="card-title text-info">{{ program.name }}</h4>
                     <p class="card-text">{{ program.description }}</p>
 
@@ -27,8 +27,10 @@
                     <p class="card-text"><strong class="text-info"></strong><a href="mailto:{{ program.teacher.user.email }}">{{ program.teacher.user.email }}</a></p>
                     <h4 class="card-title text-info">Cupo Actual</h4>
                     <p class="card-text">{{ program.current_capacity_available }}/{{ program.capacity }}</p>
-                    <h4 class="card-title text-info">Horario</h4>
-                    <div id='calendar'></div>
+                    {% if schedule %}
+                        <h4 class="card-title text-info">Horario</h4>
+                        <div id='calendar'></div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -46,7 +48,7 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             defaultView: 'month',
             events: [{
-                title:"{{ program.name }}",
+                title: '{{ program.name }}',
                 startRecur: '{{ program.start_date|date:"Y-m-d" }}',
                 endRecur: '{{ program.final_data|date:"Y-m-d" }}',
                 startTime: '{{ schedule.start_time }}',

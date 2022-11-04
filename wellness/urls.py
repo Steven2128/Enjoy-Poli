@@ -12,4 +12,7 @@ urlpatterns = [
     path('consulta-medica-y-enfermeria/<slug:title>', ProgramDetailView.as_view(), name='program-medical-detail'),
     path('semillitas/', ProgramByPolyLittleSeedSActivitiesListView.as_view(), name='seed-activities-list'),
     path('semillitas/<slug:title>', ProgramDetailView.as_view(), name='program-seed-detail'),
+    path('enroll-user/<str:title>', enroll_user, name='enroll-user'),
+    path('bienestar/<slug:slug>', ProgramDetailView.as_view(), name='program-detail'),
+    path('inscriptions/', ProgramListView.as_view(), name='inscriptions'),
 ]

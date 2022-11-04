@@ -2,16 +2,6 @@
 
     <div class="sidebar">
       <div class="sidebar-wrapper">
-        <div class="logo">
-          <a target="_blank" rel="sponsored noopener noreferrer"
-             href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-mini">
-            PG
-          </a>
-          <a target="_blank" rel="sponsored noopener noreferrer"
-             href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-normal">
-            Enjoy Poli
-          </a>
-        </div>
 
         <ul class="nav">
         {% if request.user.is_authenticated %}
@@ -58,9 +48,9 @@
           </li>
 
           <li class="{% if 'tables' in segment %} active {% endif %}">
-            <a href="/ui-tables.html">
+            <a href="{% url 'inscriptions' %}">
               <i class="tim-icons icon-puzzle-10"></i>
-              <p>Table List</p>
+              <p>Mis Inscripciones</p>
             </a>
           </li>
           <li class="{% if 'typography' in segment %} active {% endif %}">
