@@ -4,8 +4,8 @@
 
 {% block content %}
     {% if programs %}
+        <div class="row">
         {% for program in programs %}
-            <div class="row">
                 <div class="col-4">
                     <div class="card">
                         <img class="card-img-top img-fluid" src="{{ program.image }}" alt="Card image cap">
@@ -16,8 +16,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
         {% endfor %}
+        </div>
     {% else %}
         <div class="alert alert-light" role="alert">
             Aún no te has inscrito a ningun programa...

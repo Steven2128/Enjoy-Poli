@@ -1,4 +1,5 @@
 # Django
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 # Models
@@ -70,6 +71,9 @@ def enroll_user(request, title):
         if program.current_capacity_available != 0:
             program.current_capacity_available -= 1
             program.save()
+            messages.success(request, '¡Inscrito exitosamente!')
+        else:
+            messages.error(request, '¡Se ha alcanzado el maximo de cupo para este programa!')
     if program.activity == 'AC':
         return redirect('program-cultural-detail', program.slug)
     elif program.activity == 'AD':

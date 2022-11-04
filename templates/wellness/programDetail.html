@@ -4,27 +4,43 @@
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
-    <link href={% static 'assets/lib/main.css' %} rel='stylesheet' />
+    <link href={% static 'assets/lib/main.css' %} rel='stylesheet'/>
 
 {% endblock stylesheets %}
 
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-        {{ related }}
+            {{ related }}
             <div class="card card-profile">
                 <div class="card-body">
-                    <h6 class="card-category text-gray">{{ program.get_activity_display }} {% if is_enroll is False %}<a href="{% url 'enroll-user' program.slug %}" class="btn btn-primary btn-round float-right">Confirmar Inscripción</a>{% endif %}</h6>
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message.tags %}
+                                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    <h6 class="card-category text-gray">{{ program.get_activity_display }} {% if is_enroll is False %}
+                        <a href="{% url 'enroll-user' program.slug %}" class="btn btn-primary btn-round float-right">Confirmar
+                            Inscripción</a>{% endif %}</h6>
                     <h4 class="card-title text-info">{{ program.name }}</h4>
                     <p class="card-text">{{ program.description }}</p>
 
                     <h4 class="card-title text-info">Fecha Inicio - Fecha Fin</h4>
-                    <p class="card-text">{% if program.start_date is not None %}{{ program.start_date }}{% else %}No disponible{% endif %}
-                        <strong>hasta</strong> {% if program.final_data is not None %}{{ program.final_data }}{% else %}No disponible{% endif %}</p>
+                    <p class="card-text">{% if program.start_date is not None %}{{ program.start_date }}{% else %}No
+                        disponible{% endif %}
+                        <strong>hasta</strong>
+                        {% if program.final_data is not None %}{{ program.final_data }}{% else %}Nodisponible{% endif %}
+                    </p>
                     <h4 class="card-title text-info">Instructor</h4>
                     <p class="card-title">{{ program.teacher.user.get_full_name }}</p>
                     <h4 class="card-title text-info">Email</h4>
-                    <p class="card-text"><strong class="text-info"></strong><a href="mailto:{{ program.teacher.user.email }}">{{ program.teacher.user.email }}</a></p>
+                    <p class="card-text"><strong class="text-info"></strong><a
+                            href="mailto:{{ program.teacher.user.email }}">{{ program.teacher.user.email }}</a></p>
                     <h4 class="card-title text-info">Cupo Actual</h4>
                     <p class="card-text">{{ program.current_capacity_available }}/{{ program.capacity }}</p>
                     {% if schedule %}
@@ -43,21 +59,21 @@
     <script src={% static 'assets/lib/main.js' %}></script>
     <script src={% static 'assets/lib/locales/es.js' %}></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            defaultView: 'month',
-            events: [{
-                title: '{{ program.name }}',
-                startRecur: '{{ program.start_date|date:"Y-m-d" }}',
-                endRecur: '{{ program.final_data|date:"Y-m-d" }}',
-                startTime: '{{ schedule.start_time }}',
-                endTime: '{{ schedule.final_time }}',
-                daysOfWeek: ['{{ schedule.day }}']
-            }],
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                defaultView: 'month',
+                events: [{
+                    title: '{{ program.name }}',
+                    startRecur: '{{ program.start_date|date:"Y-m-d" }}',
+                    endRecur: '{{ program.final_data|date:"Y-m-d" }}',
+                    startTime: '{{ schedule.start_time }}',
+                    endTime: '{{ schedule.final_time }}',
+                    daysOfWeek: ['{{ schedule.day }}']
+                }],
+            });
+            calendar.render();
         });
-        calendar.render();
-      });
 
     </script>
 {% endblock javascripts %}

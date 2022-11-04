@@ -6,12 +6,12 @@
         <ul class="nav">
         {% if request.user.is_authenticated %}
 
-          <li class="{% if 'index' in segment %} active {% endif %}">
-            <a href="/">
-              <i class="tim-icons icon-chart-pie-36"></i>
-              <p>Home</p>
-            </a>
-          </li>
+{#          <li class="{% if 'index' in segment %} active {% endif %}">#}
+{#            <a href="/">#}
+{#              <i class="tim-icons icon-chart-pie-36"></i>#}
+{#              <p>Home</p>#}
+{#            </a>#}
+{#          </li>#}
           <li>
             <a data-toggle="collapse" href="#programList" class="collapsed" aria-expanded="false">
               <i class="tim-icons icon-user-run"></i>
@@ -51,18 +51,6 @@
             <a href="{% url 'inscriptions' %}">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Mis Inscripciones</p>
-            </a>
-          </li>
-          <li class="{% if 'typography' in segment %} active {% endif %}">
-            <a href="/ui-typography.html">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Typography</p>
-            </a>
-          </li>
-          <li class="{% if 'rtl-support' in segment %} active {% endif %}">
-            <a href="/page-rtl-support.html">
-              <i class="tim-icons icon-world"></i>
-              <p>RTL Support</p>
             </a>
           </li>
           {% else %}
